@@ -1,0 +1,252 @@
+:root {
+    --bg-dark: #0a192f;
+    /* Deep Navy */
+    --glass-bg: rgba(20, 30, 60, 0.75);
+    /* Navy Glass */
+    --glass-border: rgba(255, 255, 255, 0.2);
+    --text-primary: #ffffff;
+    --text-secondary: #cbd5e1;
+    --accent-red: #ef4444;
+    /* Patriotic Red */
+    --accent-blue: #3b82f6;
+    /* Bright Blue */
+    --accent-glow: rgba(239, 68, 68, 0.4);
+    /* Red Glow */
+    --ring-bg: rgba(255, 255, 255, 0.1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+}
+
+body {
+    font-family: 'Outfit', sans-serif;
+    background-color: var(--bg-dark);
+    color: var(--text-primary);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+    /* Subtle flag texture hint can go here if desired, keeping it clean for now */
+}
+
+/* Patriotic Background Globs */
+.background-glob {
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.5;
+    z-index: -1;
+    animation: float 20s infinite alternate ease-in-out;
+}
+
+.background-glob.start {
+    top: -150px;
+    left: -150px;
+    background: radial-gradient(circle, #1e3a8a, transparent 70%);
+    /* Navy/Blue */
+}
+
+.background-glob.end {
+    bottom: -150px;
+    right: -150px;
+    background: radial-gradient(circle, #b91c1c, transparent 70%);
+    /* Deep Red */
+    animation-delay: -10s;
+}
+
+@keyframes float {
+    0% {
+        transform: translate(0, 0) scale(1);
+    }
+
+    100% {
+        transform: translate(40px, 40px) scale(1.05);
+    }
+}
+
+/* Glass Container */
+.timer-container {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    padding: 3rem;
+    border-radius: 2rem;
+    text-align: center;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    width: 90%;
+    max-width: 450px;
+}
+
+/* Progress Ring */
+.timer-ring-container {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.timer-ring {
+    transform: rotate(-90deg);
+}
+
+.ring-bg {
+    fill: none;
+    stroke: var(--ring-bg);
+    stroke-width: 8;
+}
+
+.ring-progress {
+    fill: none;
+    stroke: var(--accent-red);
+    /* Red Progress */
+    stroke-width: 8;
+    stroke-linecap: round;
+    stroke-dasharray: 880;
+    stroke-dashoffset: 0;
+    transition: stroke-dashoffset 0.1s linear, stroke 0.3s ease;
+    filter: drop-shadow(0 0 8px var(--accent-glow));
+}
+
+.time-display {
+    position: absolute;
+    font-size: 5rem;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -2px;
+    text-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Status Label */
+.status-label {
+    font-size: 1.25rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    min-height: 1.5em;
+}
+
+/* Controls */
+.controls {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    outline: none;
+}
+
+.primary-btn {
+    background: var(--accent-blue);
+    color: #fff;
+    padding: 0.8rem 2.5rem;
+    border-radius: 3rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.primary-btn:hover {
+    background: #2563eb;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(59, 130, 246, 0.5);
+}
+
+.secondary-btn {
+    color: var(--text-primary);
+    background: rgba(255, 255, 255, 0.1);
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    border: 1px solid var(--glass-border);
+}
+
+.secondary-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: rotate(180deg);
+}
+
+/* Settings / Inputs */
+/* Settings / Inputs */
+.settings {
+    margin-top: 2rem;
+}
+
+.input-group {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.input-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.settings label {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.settings input {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 0.5rem;
+    border-radius: 8px;
+    color: var(--text-primary);
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.1rem;
+    width: 60px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.settings input:focus {
+    outline: none;
+    border-color: var(--accent-blue);
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.3);
+}
+
+/* Active State Styles */
+body.timer-active .ring-progress {
+    stroke: #ffffff;
+    /* White progress when active for contrast against blue/red */
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.6));
+}
+
+body.timer-active .time-display {
+    color: var(--accent-red);
+    /* Red time text when active? Or keep white. Let's try slight red tint */
+    text-shadow: 0 0 20px rgba(239, 68, 68, 0.5);
+}
